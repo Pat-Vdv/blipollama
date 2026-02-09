@@ -64,7 +64,7 @@ class BlipBackend:
             im = im.convert("RGB")
             if im.size[0] < self.min_side or im.size[1] < self.min_side:
                 return ""
-
+            # torch.no_grad() ; n'enregistre rien, ne fait pas de backpropagation »
             with torch.no_grad():
                 inputs = self.processor(images=im, text=self.prompt, return_tensors="pt").to(self.device)
                 out = self.model.generate(**inputs, max_new_tokens=self.max_new_tokens)
