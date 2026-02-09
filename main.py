@@ -28,6 +28,17 @@ from blipollama.models import CaptionBackend
 class BlipBackend:
     name = "blip"
 
+    """
+    en parametre '*' pour forcer les arguments suivants à être passés en keyword 
+    (ex: prompt="a photo of") et éviter les erreurs de positionnement d'arguments comme:
+    BlipBackend("Salesforce/blip", 50)   # ERROR
+    ✅ Obligatoire :
+    BlipBackend(
+        model_id="Salesforce/blip-image-captioning-base",
+        prompt="a photo of",
+        max_new_tokens=50,
+    )
+    """
     def __init__(
         self,
         *,
